@@ -28,19 +28,6 @@ The Blackboard contains these properties:
 4. Assign the player-name texture to `JerseyNameTexture`.
 5. Adjust `JerseyNumberScale`, `JerseyNumberPosition`, `JerseyNameScale`, and `JerseyNamePosition` to place and size the text on the jersey.
 
-## C# Script Configuration
-
-The `PlayerJerseryCustomization` script is designed to work with the shader properties above.
-
-Assign the following references in the Inspector:
-
-- The jersey Renderer.
-- The material slot that uses the Custom Jersey Shader Graph material.
-- The TMP text objects used to generate the player name and number textures.
-- The cameras and RenderTextures used for the name and number.
-
-The script's public fields can be edited in the Inspector while the game is running. Changes to the name, number, scale, or position are detected and applied to the jersey.
-
 ## Suggested RenderTexture Settings
 
 Use separate RenderTextures for the player name and number.
