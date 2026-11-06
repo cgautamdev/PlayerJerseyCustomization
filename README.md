@@ -20,15 +20,6 @@ The Blackboard contains these properties:
 | `JerseyNameScale` | Vector2 | Scale of the name overlay |
 | `JerseyNamePosition` | Vector2 | Position of the name overlay |
 
-## Shader Setup
-
-1. Create or open the `CustomJersey_ShaderGraph` Shader Graph.
-2. Add the properties listed above to the Blackboard.
-3. Set the property reference names exactly as shown in the table. The C# script uses these reference names to access the material properties.
-4. Use the jersey base, AO, smoothness, normal, and metallic textures for the corresponding Lit shader inputs.
-5. The number and name textures are handled as separate overlay branches in the graph.
-6. Each overlay has its own UV scale and position controls, so the player name and number can be adjusted independently.
-
 ## Material Setup
 
 1. Create a material from `CustomJersey_ShaderGraph`.
