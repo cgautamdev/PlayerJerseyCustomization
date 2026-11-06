@@ -58,7 +58,7 @@ Use separate RenderTextures for the player name and number.
 |---|---|
 | Name texture size | 1024 × 256 |
 | Number texture size | 1024 × 1024 |
-| Color format | ARGB32 |
+| Color format | B8G8R8A8_UNORM |
 | Filter Mode | Bilinear |
 | Wrap Mode | Clamp |
 
