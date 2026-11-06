@@ -1,76 +1,44 @@
 # Custom Jersey Shader Graph
 
-A Unity Shader Graph setup for customizing a jersey with separate player-name and player-number textures. The shader also exposes the jersey's base and surface maps, along with independent scale and position controls for the name and number.
+## How It Works
 
-## Shader Graph Properties
+The shader uses the object's UV map as the starting point for sampling the jersey textures. The sampled jersey texture is then connected to the Fragment output.
 
-The Blackboard contains these properties:
+A centered UV is also used to position and scale the two text overlays: the player name and the player number.
 
-| Property | Type | Purpose |
-|---|---|---|
-| `Jersey_Base` | Texture2D | Main jersey/base texture |
-| `Jersey_AO` | Texture2D | Ambient occlusion map |
-| `Jersey_Smoothness` | Texture2D | Smoothness map |
-| `Jersey_Normal` | Texture2D | Normal map |
-| `Jersey_Metallic` | Texture2D | Metallic map |
-| `JerseyNumberTexture` | Texture2D | Player-number texture |
-| `JerseyNameTexture` | Texture2D | Player-name texture |
-| `JerseyNumberScale` | Vector2 | Scale of the number overlay |
-| `JerseyNumberPosition` | Vector2 | Position of the number overlay |
-| `JerseyNameScale` | Vector2 | Scale of the name overlay |
-| `JerseyNamePosition` | Vector2 | Position of the name overlay |
+Each overlay has its own set of inputs:
 
-## Shader Setup
+- Name texture, scale, and position
+- Number texture, scale, and position
 
-1. Create or open the `CustomJersey_ShaderGraph` Shader Graph.
-2. Add the properties listed above to the Blackboard.
-3. Set the property reference names exactly as shown in the table. The C# script uses these reference names to access the material properties.
-4. Use the jersey base, AO, smoothness, normal, and metallic textures for the corresponding Lit shader inputs.
-5. The number and name textures are handled as separate overlay branches in the graph.
-6. Each overlay has its own UV scale and position controls, so the player name and number can be adjusted independently.
+The two overlays are first blended with the base jersey texture using Lerp nodes. The overlay results are then blended together using the combined alpha from the sampled textures.
 
-## Material Setup
+## How to Set Up and Use
 
-1. Create a material from `CustomJersey_ShaderGraph`.
-2. Assign the jersey's base, AO, smoothness, normal, and metallic maps in the material.
-3. Assign the player-number texture to `JerseyNumberTexture`.
-4. Assign the player-name texture to `JerseyNameTexture`.
-5. Adjust `JerseyNumberScale`, `JerseyNumberPosition`, `JerseyNameScale`, and `JerseyNamePosition` to place and size the text on the jersey.
+### 1. Set Up the Name Camera
 
-## C# Script Configuration
+- Create a camera with **Screen Space - Camera** rendering for the name text.
+- Set the camera to **Orthographic**.
+- Place only the name text on a separate layer.
+- Set the camera's Culling Mask to include only that layer.
 
-The `PlayerJerseryCustomization` script is designed to work with the shader properties above.
+### 2. Set Up the Number Camera
 
-Assign the following references in the Inspector:
+Repeat the same setup for the player number:
 
-- The jersey Renderer.
-- The material slot that uses the Custom Jersey Shader Graph material.
-- The TMP text objects used to generate the player name and number textures.
-- The cameras and RenderTextures used for the name and number.
+- Create a separate camera with **Screen Space - Camera** rendering.
+- Set it to **Orthographic**.
+- Place only the number text on its own layer.
+- Set the camera's Culling Mask to include only that layer.
 
-The script's public fields can be edited in the Inspector while the game is running. Changes to the name, number, scale, or position are detected and applied to the jersey.
+### 3. Create the RenderTextures
 
-## Suggested RenderTexture Settings
+- Create two RenderTextures: one for the name and one for the number.
+- Choose a color format that supports alpha.
+- Assign each RenderTexture as the output texture for its corresponding camera.
 
-Use separate RenderTextures for the player name and number.
+### 4. Create and Configure the Material
 
-| Setting | Suggested value |
-|---|---|
-| Name texture size | 1024 × 256 |
-| Number texture size | 1024 × 1024 |
-| Color format | ARGB32 |
-| Filter Mode | Bilinear |
-| Wrap Mode | Clamp |
-
-Choose texture dimensions that suit the jersey UV layout and the amount of text being displayed.
-
-## Troubleshooting
-
-- **Name or number does not appear:** Check that the correct texture is assigned to the matching Shader Graph property.
-- **Name or number is in the wrong place:** Adjust its corresponding position and scale vectors independently.
-- **Material properties are reported as missing:** Confirm that the jersey Renderer is using the correct material in the configured material slot, and that the Shader Graph property reference names match the table exactly.
-- **Changes do not appear:** Confirm that the script references the intended Renderer, material slot, TMP objects, cameras, and RenderTextures.
-
----
-
-Author: Gautam Dev
+- Create a material that uses the Custom Jersey Shader Graph.
+- Assign the name and number RenderTextures to their corresponding texture properties.
+- Adjust the scale and position controls for the name and number until both overlays are placed correctly on the jersey.
