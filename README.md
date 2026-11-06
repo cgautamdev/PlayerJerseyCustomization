@@ -63,14 +63,5 @@ Use separate RenderTextures for the player name and number.
 | Wrap Mode | Clamp |
 
 Choose texture dimensions that suit the jersey UV layout and the amount of text being displayed.
-
-## Troubleshooting
-
-- **Name or number does not appear:** Check that the correct texture is assigned to the matching Shader Graph property.
-- **Name or number is in the wrong place:** Adjust its corresponding position and scale vectors independently.
-- **Material properties are reported as missing:** Confirm that the jersey Renderer is using the correct material in the configured material slot, and that the Shader Graph property reference names match the table exactly.
-- **Changes do not appear:** Confirm that the script references the intended Renderer, material slot, TMP objects, cameras, and RenderTextures.
-
 ---
 
-Author: Gautam Dev
