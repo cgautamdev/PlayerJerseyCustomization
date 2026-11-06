@@ -43,10 +43,9 @@ Create a separate layer for the name text, then set the camera's Culling Mask to
 
 Repeat the same setup for the player number:
 
-- Create a separate camera and set it to **Orthographic**.
-- Use a **Screen Space - Camera** canvas containing only the number text.
-- Place the number text on its own layer.
-- Set the camera's Culling Mask to include only that layer.
+Create a camera for the player-number text. Set the camera to **Orthographic** and use it with a **Screen Space - Camera** canvas containing only the number text.
+
+Create a separate layer for the number text, then set the camera's Culling Mask to include only that layer.
 
 ### 3. Create and Assign the RenderTextures
 
