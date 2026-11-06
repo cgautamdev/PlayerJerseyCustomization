@@ -20,28 +20,6 @@ The Blackboard contains the following properties:
 | `JerseyNameScale` | Vector2 | Scale of the name overlay |
 | `JerseyNamePosition` | Vector2 | Position of the name overlay |
 
-## Material Setup
-
-1. Create a material using `CustomJersey_ShaderGraph`.
-2. Assign the jersey's base, AO, smoothness, normal, and metallic maps.
-3. Assign the player-number texture to `JerseyNumberTexture`.
-4. Assign the player-name texture to `JerseyNameTexture`.
-5. Adjust `JerseyNumberScale`, `JerseyNumberPosition`, `JerseyNameScale`, and `JerseyNamePosition` to set the size and placement of both overlays.
-
-## Suggested RenderTexture Settings
-
-Create separate RenderTextures for the player name and player number.
-
-| Setting | Suggested value |
-|---|---|
-| Name texture size | 1024 × 256 |
-| Number texture size | 1024 × 1024 |
-| Color format | `B8G8R8A8_UNORM` |
-| Filter Mode | Bilinear |
-| Wrap Mode | Clamp |
-
-Choose texture dimensions that suit the jersey UV layout and the amount of text being displayed.
-
 ## How It Works
 
 The shader uses the object's UV map as the input for the Sample Texture 2D nodes that read the jersey textures. The sampled jersey texture is then connected to the Fragment output.
@@ -81,3 +59,25 @@ Assign each RenderTexture as the output texture for its corresponding camera.
 Create a material using the shader and assign the name and number RenderTextures to their corresponding texture properties.
 
 Adjust the scale and position controls for the name and number to place both overlays correctly on the jersey.
+
+## Material Setup
+
+1. Create a material using `CustomJersey_ShaderGraph`.
+2. Assign the jersey's base, AO, smoothness, normal, and metallic maps.
+3. Assign the player-number texture to `JerseyNumberTexture`.
+4. Assign the player-name texture to `JerseyNameTexture`.
+5. Adjust `JerseyNumberScale`, `JerseyNumberPosition`, `JerseyNameScale`, and `JerseyNamePosition` to set the size and placement of both overlays.
+
+## Suggested RenderTexture Settings
+
+Create separate RenderTextures for the player name and player number.
+
+| Setting | Suggested value |
+|---|---|
+| Name texture size | 1024 × 256 |
+| Number texture size | 1024 × 1024 |
+| Color format | `B8G8R8A8_UNORM` |
+| Filter Mode | Bilinear |
+| Wrap Mode | Clamp |
+
+Choose texture dimensions that suit the jersey UV layout and the amount of text being displayed.
